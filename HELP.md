@@ -660,12 +660,12 @@ Install dependencies:
 npm i cloudcmd express socket.io -S
 ```
 
-And create `index.js`:
+And create `index.mjs`:
 
 ```js
 import http from 'http';
 import cloudcmd from 'cloudcmd';
-import io from 'socket.io';
+import * as io from 'socket.io';
 import express from 'express';
 
 const app = express();
@@ -673,7 +673,7 @@ const port = 1337;
 const prefix = '/';
 
 const server = http.createServer(app);
-const socket = io.listen(server, {
+const socket = new io.Server(server, {
     path: `${prefix}socket.io`,
 });
 
